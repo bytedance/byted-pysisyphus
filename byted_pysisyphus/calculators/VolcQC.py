@@ -540,5 +540,8 @@ class VolcQC(OverlapCalculator):
         except KeyError:
             self.log("Found no chkfile information in chkfiles!")
 
+    def reset_guess(self):
+        self.chkfile = None
+
     def __str__(self):
         return f"VolcQC({self.name})"
