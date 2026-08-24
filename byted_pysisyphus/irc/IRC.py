@@ -465,6 +465,11 @@ class IRC:
 
     def irc(self, direction):
         self.log(highlight_text(f"IRC {direction}", level=1))
+
+        if hasattr(self.geometry.calculator, 'reset_guess'):
+            print("Initial guess reset at the beginning of an IRC.")
+            self.geometry.calculator.reset_guess()
+
         self.cur_direction = direction
         self.prepare(direction)
         # Calculate gradient
