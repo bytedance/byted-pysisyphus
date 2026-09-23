@@ -214,10 +214,11 @@ class XTB(Calculator):
             cosmo = f"--cosmo {self.cosmo}".split()
             add_args = add_args + cosmo
         # Select parametrization
-        gfn = ["--gfnff"] if self.gfn == "ff" else f"--gfn {self.gfn}".split()
-        add_args = add_args + gfn
         if self.gxtb:
             add_args.append("--gxtb")
+        else:
+            gfn = ["--gfnff"] if self.gfn == "ff" else f"--gfn {self.gfn}".split()
+            add_args = add_args + gfn
         return add_args
 
     def get_pal_env(self):
