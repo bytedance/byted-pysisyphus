@@ -560,7 +560,8 @@ class IRC:
                 break_msg = "rms(grad) below hard threshold."
             # TODO: Allow some threshold?
             elif self.energy_increased:
-                break_msg = "Energy increased!"
+                # break_msg = "Energy increased!"
+                print("\nEnergy increased!\nIt is very likely that the electronic state has changed over IRC.\n")
             elif self.energy_converged:
                 break_msg = "Energy converged!"
                 self.converged = True
