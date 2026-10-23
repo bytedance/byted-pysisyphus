@@ -34,6 +34,7 @@ class VolcQC(OverlapCalculator):
         verbose,
         scf_conv_tol,
         direct_scf_tol,
+        scf_max_cycles,
         retry_soscf,
         basis_linear_dependency_threshold,
         with_df,
@@ -84,6 +85,7 @@ class VolcQC(OverlapCalculator):
             "ecp": ecp,
             "verbose": verbose,
             "scf_conv_tol": scf_conv_tol,
+            "scf_max_cycles": scf_max_cycles,
             "direct_scf_tol": direct_scf_tol,
             "retry_soscf": retry_soscf,
             "basis_linear_dependency_threshold": basis_linear_dependency_threshold,
@@ -164,6 +166,8 @@ class VolcQC(OverlapCalculator):
         assert type(direct_scf_tol) is float and direct_scf_tol >= 0
         scf_conv_tol = self.pyscf_configs["scf_conv_tol"]
         assert type(scf_conv_tol) is float and scf_conv_tol > 0
+        scf_max_cycles = self.pyscf_configs["scf_max_cycles"]
+        assert type(scf_max_cycles) is int and scf_max_cycles >= 0
         with_tddft = self.pyscf_configs["with_tddft"]
         assert type(with_tddft) is bool
         pruning = self.pyscf_configs["pruning"]
@@ -260,6 +264,7 @@ class VolcQC(OverlapCalculator):
 
         mf.direct_scf_tol = direct_scf_tol
         mf.conv_tol = scf_conv_tol
+        mf.max_cycle = scf_max_cycles
 
         return mf
 
